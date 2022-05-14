@@ -11,13 +11,16 @@ name : string [required]
 age :  number
 favoriteFoods : array of strings (*)
  */
-let personSchema = new mongoose.Schema({
+
+//schema
+const personSchema = new mongoose.Schema({
   name  : { type:String, required:true},
   age   : Number,
-  favoriteFoods : [String]
+  favoriteFoods : [String],
 })
+//create model
 let Person = mongoose.model('Person', personSchema);
-
+//instance
 let cpu = new Person({
   name: "CPuPush",
   age: 30,

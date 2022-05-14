@@ -1,9 +1,22 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-
-let Person;
+mongoose.connect(process.env.MONGO_URI, { 
+  useNewUrlParser: true, useUnifiedTopology: true 
+});
+/**
+- Person Prototype -
+--------------------
+name : string [required]
+age :  number
+favoriteFoods : array of strings (*)
+ */
+let personSchema = new mongoose.Schema({
+  name  : { type:String, required:true},
+  age   : Number,
+  favoriteFoods : [String]
+})
+let Person = mongoose.model('Person', personSchema);
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
@@ -70,3 +83,5 @@ exports.createManyPeople = createManyPeople;
 exports.removeById = removeById;
 exports.removeManyPeople = removeManyPeople;
 exports.queryChain = queryChain;
+
+// heroku login -i
